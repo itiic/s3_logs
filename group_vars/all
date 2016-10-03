@@ -1,0 +1,15 @@
+---
+
+
+PROXY:
+  http_proxy: http://...
+  https_proxy: http://...
+  no_proxy: localhost,....
+
+
+bucket: ...
+
+DIR: /var/log/serviceA
+
+
+

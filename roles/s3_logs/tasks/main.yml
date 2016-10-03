@@ -1,0 +1,31 @@
+---
+# tasks file for roles/s3_logs
+
+
+
+- name: Create bucket
+  s3_bucket: name={{bucket}}
+  tags: create_bucket
+
+
+- name: Copy script
+  template: src=script.py dest={{DIR}}/script.py mode=0755 force=true
+  tags: script
+
+
+- name: Create list of files to upload to s3
+  script: {{DIR}}/script.py
+  register: files
+  tags: script
+
+
+- name: Upload files
+  s3: bucket={{bucket}} src={{item}} mode=put
+  with_items: files
+  tags: upload
+
+
+- name: Remove script
+  file: path={{DIR}}/script.py state=absent
+
+

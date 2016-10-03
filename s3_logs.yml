@@ -1,0 +1,14 @@
+---
+
+
+- hosts: servers
+  user: aps
+  roles: 
+   - { role: s3_logs, tags: s3_logs}
+  environment: "{{ PROXY }}"
+
+
+# RUN: ansible-playbook -i inventories/inventory s3_logs.yml
+
+
+
