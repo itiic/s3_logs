@@ -24,8 +24,13 @@
   with_items: files
   tags: upload
 
-
+- name: Remove uploaded file
+  file: path={{item}} state=absent
+  with_items: files
+  tags: remove
+  
 - name: Remove script
   file: path={{DIR}}/script.py state=absent
+  tags: remove
 
 
